@@ -2,6 +2,8 @@ pragma solidity ^0.4.24;
 
 import "@aragon/os/contracts/apps/AragonApp.sol";
 import "@aragon/apps-token-manager/contracts/TokenManager.sol";
+import "@aragon/apps-agent/contracts/Agent.sol";
+import "./ICycleManager.sol";
 
 contract Airdrop is AragonApp {
 
@@ -18,6 +20,8 @@ contract Airdrop is AragonApp {
     /// State
     mapping(uint => Airdrop) public airdrops;
     TokenManager public tokenManager;
+    Agent public agent;
+    ICycleManager public cycleManager;
     uint public airdropsCount;
 
     /// ACL
@@ -27,10 +31,12 @@ contract Airdrop is AragonApp {
     string private constant ERROR_AWARDED = "AWARDED";
     string private constant ERROR_INVALID = "INVALID";
 
-    function initialize(address _tokenManager) onlyInit public {
+    function initialize(TokenManager _tokenManager, Agent _agent, ICycleManager _cycleManager) onlyInit public {
         initialized();
 
-        tokenManager = TokenManager(_tokenManager);
+        tokenManager = _tokenManager;
+        agent = _agent;
+        cycleManager = _cycleManager;
     }
 
     /**

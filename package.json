@@ -14,6 +14,7 @@
 		"core-js": "^3.1.4",
 		"csvtojson": "^2.0.10",
 		"ethereumjs-util": "^6.1.0",
+		"ganache-core": "^2.10.2",
 		"ipfs-http-client": "^32.0.1",
 		"merkle-tree-solidity": "daonuts/merkle-tree-solidity#master",
 		"multihashes": "^0.4.14",
@@ -21,11 +22,12 @@
 		"react-dom": "^16.8.6",
 		"regenerator-runtime": "^0.13.2",
 		"rxjs": "^6.5.2",
-		"styled-components": "^4.3.2"
+		"styled-components": "^4.3.2",
+		"truffle": "^5.1.4"
 	},
 	"devDependencies": {
 		"@aragon/apps-shared-migrations": "^1.0.0",
-		"@aragon/cli": "^6.2.6",
+		"@aragon/cli": "^7.0.1",
 		"@aragon/test-helpers": "^1.1.0",
 		"@babel/core": "^7.6.0",
 		"@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -35,9 +37,9 @@
 	},
 	"scripts": {
 		"start": "aragon run",
-		"start:template": "npm run start -- --template Template --template-init @ARAGON_ENS --files dist",
-		"start:http": "aragon run --http localhost:1234 --http-served-from ./dist",
-		"start:http:template": "npm run start:http -- --template Template --template-init @ARAGON_ENS",
+		"start:template": "npm run start -- --template Template --template-init @ARAGON_ENS --files dist --template-args ['\"0xb4124cEB3451635DAcedd11767f004d8a28c6eE7\"']",
+		"start:http": "aragon run --http localhost:8001 --http-served-from ./dist",
+		"start:http:template": "npm run start:http -- --template Template --template-init @ARAGON_ENS --template-args ['\"0xb4124cEB3451635DAcedd11767f004d8a28c6eE7\"']",
 		"test": "aragon contracts test",
 		"compile": "aragon contracts compile",
 		"sync-assets": "copy-aragon-ui-assets -n aragon-ui ./dist",
